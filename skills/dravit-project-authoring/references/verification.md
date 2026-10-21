@@ -14,6 +14,8 @@ Top uses that Level's working plane; 3D includes it and lower Levels. Use `objec
 
 Poll `operation_get` until its PNG receipt is terminal. Confirm revision/options, `visible_object_ids`, omissions and separate `reference_sources` as actually returned by the tool. Read exact field names from discovery/receipt rather than assuming them from prose. Images must be consumed as images by the assistant; an editor hyperlink alone is not visual inspection.
 
+When the user asks to see a view, use the client's supported image display or attachment mechanism. A model-readable MCP PNG does not establish that it appeared in the user's message. If inline display is unavailable or unconfirmed, report that the render was generated, state that display limit and provide the MCP editor link with the requested view. Say an image is shown only with actual client display evidence; do not draw a substitute or publish the private PNG to work around that limit.
+
 Use Top plus 3D where supported, then relevant Front/Back/Left/Right views for the question. Side coverage is family-specific: architecture/Axis/Level are available; Pipe supports Front; catalog Side and Room Side/3D are unsupported in this source contract. Roof nested geometry is observed through its parent. Exclusive unsupported focus may fail, while a mixed selection may omit objects. Omitted IDs, clipped objects, hidden filters, copied underlays and unsupported IFC preview delivery do not prove absence from the model.
 
 The live editor monitor and its current applied revision are separate evidence. A successful server Save or image does not prove that a user's open editor received Reverb. Report live delivery as verified only when actual monitor/session evidence establishes it.

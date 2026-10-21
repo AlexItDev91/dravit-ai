@@ -6,5 +6,6 @@
 - Compact spatial and human-use references from the accepted E8 research, preserving unknown/unsupported boundaries.
 - One-source portable MCP plugin, optional registered ChatGPT wrapper, Claude skill ZIP and versioned guide artifact packaging.
 - Independent release metadata, immutable-tag policy and evaluation/client receipts kept pending until verified.
+- Distinguish a model-readable MCP image from an image actually displayed to the user; use an honest editor-link fallback when the client cannot show it.
 
 The source preview is published at https://github.com/AlexItDev91/dravit-ai. The repository is maintained inside BIM as a Git submodule. Source/package CI and isolated CLI installation/update-current checks passed. The first tagged release, license selection, behavioral evaluation and native client publication/acceptance remain pending.
