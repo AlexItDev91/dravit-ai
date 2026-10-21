@@ -7,4 +7,4 @@
 - One-source portable MCP plugin, optional registered ChatGPT wrapper, Claude skill ZIP and versioned guide artifact packaging.
 - Independent release metadata, immutable-tag policy and evaluation/client receipts kept pending until verified.
 
-This is local source preparation. No 0.1.0 release, public repository, publication, installation, upgrade or behavioral acceptance has occurred.
+The source preview is published at https://github.com/AlexItDev91/dravit-ai. The repository is maintained inside BIM as a Git submodule. Source/package CI and isolated CLI installation/update-current checks passed. The first tagged release, license selection, behavioral evaluation and native client publication/acceptance remain pending.

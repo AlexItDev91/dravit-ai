@@ -6,7 +6,7 @@ Agent skill for creating, changing and inspecting Dravit projects through existi
 
 ## Install with one command
 
-Requires a supported local agent such as Codex or Claude Code, Node.js22.20+ and an authenticated Dravit MCP connection.
+Requires a supported local agent such as Codex or Claude Code, Node.js 22.20+ and an authenticated Dravit MCP connection.
 
 ```sh
 npx skills add AlexItDev91/dravit-ai --skill dravit-project-authoring

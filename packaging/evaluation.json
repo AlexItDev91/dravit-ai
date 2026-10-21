@@ -11,5 +11,5 @@
     "affected_and_critical_regressions": "pending"
   },
   "results": [],
-  "note": "Initial source implementation only. The user deferred testing, debugging, package builds and acceptance to the next stage. Existing E1 baseline is context, not evidence for this skill."
+  "note": "Public source preview. Source/package CI and isolated CLI installation/update-current checks do not replace the pending upstream manifest, behavioral and client acceptance gates. Existing E1 baseline is context, not evidence for this skill."
 }
