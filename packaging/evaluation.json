@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "pending",
+  "content_sha256": null,
+  "catalog_fingerprint": null,
+  "repetitions": null,
+  "checks": {
+    "skill_format_and_links": "pending",
+    "manifest_schemas_and_archive_contents": "pending",
+    "behavioral_with_and_without_skill": "pending",
+    "affected_and_critical_regressions": "pending"
+  },
+  "results": [],
+  "note": "Initial source implementation only. The user deferred testing, debugging, package builds and acceptance to the next stage. Existing E1 baseline is context, not evidence for this skill."
+}

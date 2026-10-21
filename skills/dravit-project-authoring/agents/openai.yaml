@@ -1,0 +1,13 @@
+interface:
+  display_name: "Dravit Project Authoring"
+  short_description: "Create and inspect Dravit projects through MCP"
+  default_prompt: "Use $dravit-project-authoring to carry out my brief in the connected Dravit project and verify the saved result."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "dravit"
+      description: "Authenticated Dravit project tools"
+      transport: "streamable_http"
+      url: "https://dravit.pro/mcp"
+policy:
+  allow_implicit_invocation: true

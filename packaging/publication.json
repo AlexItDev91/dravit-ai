@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "state": "public_repository",
+  "repository": "https://github.com/AlexItDev91/dravit-ai",
+  "publisher": "AlexItDev91",
+  "license": null,
+  "source_branch": "main",
+  "release_tag_prefix": "dravit-skill-v",
+  "mcp_url": "https://dravit.pro/mcp",
+  "chatgpt_registered_app_id": null
+}

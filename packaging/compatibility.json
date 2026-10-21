@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "protocol_version": 1,
+  "catalog_policy": "runtime_discovery",
+  "required_tools": [
+    "projects_list",
+    "mcp_session_start",
+    "project_get",
+    "objects_list",
+    "object_get",
+    "tool_describe",
+    "project_batch",
+    "operation_get",
+    "project_view"
+  ],
+  "optional_bootstrap_tool": "dravit_guide",
+  "guide_sections": {
+    "overview": "SKILL.md",
+    "workflow": "references/authoring-workflow.md",
+    "verification": "references/verification.md",
+    "spatial-reasoning": "references/spatial-reasoning.md",
+    "human-use": "references/human-use.md"
+  },
+  "revision_fields": [
+    "project_id",
+    "mcp_version_id",
+    "snapshot_version",
+    "restore_generation",
+    "document_hash"
+  ],
+  "units_policy": "Use explicit schema units; model lengths are normally metres and rotations degrees. Display length_unit does not rescale model coordinates.",
+  "checks_policy": "Only invoke existing checks advertised by current discovery. Research records and geometry helpers do not establish executable checks.",
+  "catalog_version": null,
+  "catalog_fingerprint": null,
+  "catalog_verification_status": "pending",
+  "source_contract_reviewed_at": "2026-10-21",
+  "review_scope": "Source contract reading only; no MCP calls, package tests or client acceptance performed for this skill."
+}
