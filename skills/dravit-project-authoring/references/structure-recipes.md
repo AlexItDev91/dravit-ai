@@ -102,6 +102,8 @@ Top modes:
 | `automatic_next_level` | Resolve the next Level and fallback through the existing owner; do not send resolved `level_id` or `fallback_height` inside the constraint |
 | `automatic_roof_underside` | Optionally select `roof_id` and nonnegative `clearance`; fit through the existing Roof underside owner |
 
+Physical Roof intersections also trim an ordinary Wall with `unconnected` intent. The authored height remains its recovery solid; it is not a way to push the body through an intersecting Roof. Derived Top/Side/3D and masonry quantities use the same trimmed body, including joined corners and hosted opening deductions. Hiding Roof covering, rafters or the whole Roof does not remove this physical dependency. A Roof wholly below the Wall base or outside its body does not trim it. Read current diagnostics for an invalid or ambiguous explicit adaptive constraint; do not treat a failed command as a Save.
+
 In Roof mode, omitting `roof_id` preserves the prior choice; `roof_id: null` clears the selected choice. Omitted clearance is retained; explicit zero is valid. Do not add these Roof-only keys to another mode. Joined Walls can receive the same top intent, so inspect the whole changed set. Updating/deleting a Roof can change attached Wall geometry later.
 
 `wall.delete` uses the existing cascade. Read back hosted Door/Window objects, Room boundary bindings, material/type bindings and axis relations; do not assume only one saved record changes.

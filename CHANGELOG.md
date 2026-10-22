@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased: 0.3.1
+
+- Explain physical Wall clipping by intersecting Roofs independently of authored top intent and Roof visibility; retain exact opening and masonry quantity semantics.
+- Refresh Wall schema descriptions and distinguish viewport errors from a ready screenshot.
+
 ## Unreleased: 0.3.0
 
 - Replace queued server PNG delivery with a synchronous read-only client browser viewport and exact loaded-revision receipts.

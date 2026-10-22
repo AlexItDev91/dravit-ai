@@ -2,7 +2,7 @@
 
 Agent skill for creating, changing and inspecting Dravit projects through existing MCP tools: project identity, shared work versions, modelling stages, saved Levels, units, retries, visual checks and human-use reasoning.
 
-**Public preview: candidate version `0.3.0`, not yet a tagged or behaviorally evaluated release.**
+**Public preview: candidate version `0.3.1`, not yet a tagged or behaviorally evaluated release.**
 
 ## Install with one command
 
@@ -55,7 +55,7 @@ python3 scripts/package.py validate
 python3 scripts/package.py build --output dist
 ```
 
-The current invocation is a draft even though its candidate version is `0.3.0`. It emits a portable Agent Plugins ZIP with `plugin.json` and remote `mcp.json`, a Claude skill-folder ZIP, guide JSON, receipt and `SHA256SUMS`. If a real `chatgpt_registered_app_id` is configured, it also emits a ChatGPT wrapper using `.app.json`; that wrapper uses the existing registered connection instead of duplicating a raw remote MCP dependency. All manifest versions come from `metadata.version`.
+The current invocation is a draft even though its candidate version is `0.3.1`. It emits a portable Agent Plugins ZIP with `plugin.json` and remote `mcp.json`, a Claude skill-folder ZIP, guide JSON, receipt and `SHA256SUMS`. If a real `chatgpt_registered_app_id` is configured, it also emits a ChatGPT wrapper using `.app.json`; that wrapper uses the existing registered connection instead of duplicating a raw remote MCP dependency. All manifest versions come from `metadata.version`.
 
 Archive entries are sorted, stored without compression and use a fixed timestamp/permissions, so identical source/configuration produces identical ZIP bytes. The output directory must be new. Only the skill, its references/UI metadata, chosen license and generated client wiring enter installable archives. Package scripts, application files, user projects, evaluation traces and runtime credentials do not enter those archives. Review archive contents for credentials as part of the deferred package gate; an allowlist is not a claim that evaluation has happened.
 
