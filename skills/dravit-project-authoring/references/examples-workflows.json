@@ -1,0 +1,159 @@
+{
+  "examples": [
+    {
+      "id": "wall-type-create",
+      "operation": "catalog.type.create",
+      "arguments": {
+        "family": "wall",
+        "name": "Study partition 100",
+        "description": "Illustrative project drywall partition; price is demonstration only.",
+        "role": "partition",
+        "thickness": {
+          "value": 0.1,
+          "unit": "m"
+        },
+        "currency_code": "EUR",
+        "recipe_code": "Drywall",
+        "complete_unit_price": 85
+      },
+      "requires": "Use the actual requested construction and approved complete price per m2; this number is not a quotation. Read the returned project-local type ID before wall.create."
+    },
+    {
+      "id": "foundation-type-create",
+      "operation": "catalog.type.create",
+      "arguments": {
+        "family": "foundation",
+        "name": "Study T foundation",
+        "description": "Illustrative complete T section, including footing and blinding.",
+        "kind": "t_section",
+        "wall_component": {
+          "width": {
+            "value": 0.3,
+            "unit": "m"
+          },
+          "height": {
+            "value": 0.8,
+            "unit": "m"
+          }
+        },
+        "footing_component": {
+          "width": {
+            "value": 0.7,
+            "unit": "m"
+          },
+          "height": {
+            "value": 0.3,
+            "unit": "m"
+          }
+        },
+        "blinding_component": {
+          "width": {
+            "value": 0.8,
+            "unit": "m"
+          },
+          "height": {
+            "value": 0.1,
+            "unit": "m"
+          }
+        },
+        "complete_unit_price_per_m3": 420,
+        "currency_code": "EUR"
+      },
+      "requires": "Dimensions and complete EUR/m3 price are demonstration inputs only; use the actual requested type and approved estimate rate. Read the resulting custom ID."
+    },
+    {
+      "id": "opening-type-create",
+      "operation": "catalog.type.create",
+      "arguments": {
+        "family": "opening",
+        "kind": "window",
+        "base_preset_id": "opening_preset.window.single_1200x1500",
+        "name": "Study window 1600",
+        "description": "Illustrative custom filled single window.",
+        "width": {
+          "value": 1.6,
+          "unit": "m"
+        },
+        "height": {
+          "value": 1.5,
+          "unit": "m"
+        },
+        "currency_code": "EUR",
+        "complete_unit_price": 650
+      },
+      "requires": "Use a current built-in preset of the same kind; price is illustrative only. Read saved document.editor.opening_presets for the generated ID; create only, no custom preset update/delete."
+    },
+    {
+      "id": "wall-type-update",
+      "operation": "catalog.type.update",
+      "arguments": {
+        "family": "wall",
+        "object_id": "wall_type.project.example",
+        "thickness": {
+          "value": 0.125,
+          "unit": "m"
+        }
+      },
+      "requires": "Replace object_id with a saved project-local Wall type. Inspect every referencing Wall; thickness affects physical faces and room fit."
+    },
+    {
+      "id": "foundation-type-update",
+      "operation": "catalog.type.update",
+      "arguments": {
+        "family": "foundation",
+        "object_id": "foundation_type.project.1",
+        "name": "Revised foundation"
+      },
+      "requires": "Replace object_id with the saved custom Foundation type ID; name change preserves its existing kind/section/price."
+    },
+    {
+      "id": "catalog-duplicate",
+      "operation": "object.duplicate",
+      "arguments": {
+        "object_id": "object.bed.example",
+        "level_id": "level.0"
+      },
+      "requires": "Replace IDs with an ungrouped supported catalog root and exact saved target Level. The owner uses +0.3m/-0.3m offset; read the new ID and resulting Room, do not assume the example center."
+    },
+    {
+      "id": "family-delete",
+      "operation": "object.delete",
+      "arguments": {
+        "object_id": "object.bed.example"
+      },
+      "requires": "Use the exact saved ungrouped object ID and confirm task intent. Existing family cascades apply. This cannot delete an account, project, Site or Level."
+    },
+    {
+      "id": "material-assign",
+      "operation": "object.material.assign",
+      "arguments": {
+        "object_id": "object.column.example",
+        "material_id": "material.concrete.c25_fixture"
+      },
+      "requires": "Replace object_id with a saved Column or other currently eligible target. Use an actually advertised/applicable material; this example does not modify Wall type or Room finish."
+    },
+    {
+      "id": "assembly-assign",
+      "operation": "object.material.assign",
+      "arguments": {
+        "object_id": "object.slab.example",
+        "assembly_id": "assembly.slab.concrete.cast_in_place_200"
+      },
+      "requires": "Replace with an eligible saved Slab. Assembly applies existing preset thickness/material; reread dimensions and neighbors. Do not send material_id and assembly_id together across overlapping oneOf branches."
+    },
+    {
+      "id": "display-unit",
+      "operation": "project.settings.update",
+      "arguments": {
+        "length_unit": "mm"
+      },
+      "requires": "Current MCP document selected; display units change only. Physical coordinates and all command length values remain metres."
+    },
+    {
+      "id": "confirm-save",
+      "operation": "project.save",
+      "arguments": {},
+      "requires": "Current MCP revision selected. Every mutation already saves. Empty JSON object is required, not a raw document/history request."
+    }
+  ]
+}

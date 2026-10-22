@@ -2,7 +2,7 @@
 
 Agent skill for creating, changing and inspecting Dravit projects through existing MCP tools: project identity, shared work versions, modelling stages, saved Levels, units, retries, visual checks and human-use reasoning.
 
-**Public preview: candidate version `0.1.0`, not yet a tagged or behaviorally evaluated release.**
+**Public preview: candidate version `0.2.0`, not yet a tagged or behaviorally evaluated release.**
 
 ## Install with one command
 
@@ -33,7 +33,13 @@ See the [skills CLI documentation](https://github.com/vercel-labs/skills/blob/ma
 
 ## Canonical source
 
-The single editable methodology is [skills/dravit-project-authoring/SKILL.md](skills/dravit-project-authoring/SKILL.md) and its four references. OpenAI metadata, Claude ZIP and MCP-guide artifacts derive from those same files. Runtime use needs only the connected Dravit MCP and instructions, never BIM source, a database, shell access or developer skills.
+The single editable methodology is [skills/dravit-project-authoring/SKILL.md](skills/dravit-project-authoring/SKILL.md) and its 22 reference documents/collections. OpenAI metadata, Claude ZIP and MCP-guide artifacts derive from those same files. Runtime use needs only the connected Dravit MCP and instructions, never BIM source, a database, shell access or developer skills.
+
+## Protocol handbook
+
+The skill contains exact parameter schemas for all 211 supported inner authoring operations, 550 operation examples with prerequisites, and 19 full native-call examples. Structural/roof/opening/circulation and Interior/Site/Pipe/Generic handbooks explain dependencies and editing behavior. Availability includes all 283 finite operation names with explicit unsupported reasons. These counts describe the reviewed source snapshot, not an engineering certification.
+
+Cloud clients retrieve the same content through `dravit_guide`: start with `overview` and `protocol`, then load the relevant named section. On command/example collections pass `operation` to retrieve one operation and optionally `example_id` to select a recipe. This avoids loading the full catalog into every task. Keep the guide's version/content pins for the stage.
 
 ## Source and contracts
 
@@ -42,7 +48,7 @@ The single editable methodology is [skills/dravit-project-authoring/SKILL.md](sk
 - [Evaluation status](packaging/evaluation.json) is pending. [Acceptance cases](evaluation/acceptance.json) retain all 32 E1 case identities and behavior expectations. Existing no-skill baseline is not an evaluation of this skill. No new test suite is duplicated here.
 - [Client matrix](packaging/delivery.json) separates published, installed and active versions, web/desktop/voice, new/open chat and updates. Every acceptance entry is pending. Grok remains deferred.
 
-Source review on 2026-10-21 used Dravit's actual MCP server/tool descriptions, command/read/preview/lifecycle schemas and E8 knowledge contracts. Available catalog commands do not establish a program validator. The skill remains capability-driven as additional existing checks are adapted.
+Source review on 2026-10-22 used Dravit's actual MCP server/tool descriptions, command/read/preview/lifecycle schemas and E8 knowledge contracts. Available catalog commands do not establish a program validator. The skill remains capability-driven as additional existing checks are adapted.
 
 ## Packaging after the deferred verification stage
 
@@ -53,7 +59,7 @@ python3 scripts/package.py validate
 python3 scripts/package.py build --output dist
 ```
 
-The current invocation is a draft even though its candidate version is `0.1.0`. It emits a portable Agent Plugins ZIP with `plugin.json` and remote `mcp.json`, a Claude skill-folder ZIP, guide JSON, receipt and `SHA256SUMS`. If a real `chatgpt_registered_app_id` is configured, it also emits a ChatGPT wrapper using `.app.json`; that wrapper uses the existing registered connection instead of duplicating a raw remote MCP dependency. All manifest versions come from `metadata.version`.
+The current invocation is a draft even though its candidate version is `0.2.0`. It emits a portable Agent Plugins ZIP with `plugin.json` and remote `mcp.json`, a Claude skill-folder ZIP, guide JSON, receipt and `SHA256SUMS`. If a real `chatgpt_registered_app_id` is configured, it also emits a ChatGPT wrapper using `.app.json`; that wrapper uses the existing registered connection instead of duplicating a raw remote MCP dependency. All manifest versions come from `metadata.version`.
 
 Archive entries are sorted, stored without compression and use a fixed timestamp/permissions, so identical source/configuration produces identical ZIP bytes. The output directory must be new. Only the skill, its references/UI metadata, chosen license and generated client wiring enter installable archives. Package scripts, application files, user projects, evaluation traces and runtime credentials do not enter those archives. Review archive contents for credentials as part of the deferred package gate; an allowlist is not a claim that evaluation has happened.
 

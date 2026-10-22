@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased: 0.2.0
+
+- Complete protocol handbook, bootstrap/native-tool envelopes and a source-backed schema reference for the finite operation catalog.
+- Detailed construction/roof/opening/circulation, Interior/Site/Pipe/Generic and shared document recipes, including every supported operation and union/action branch.
+- Exact examples with saved-identity prerequisites, real catalog variants and explicit product limits; no application source access required by the consuming agent.
+- Identical named sections through the portable skill and pinned MCP guide, with operation/example selection for bounded reads.
+
 ## Unreleased: 0.1.0
 
 - Initial Dravit project-authoring skill: identity, shared MCP version, units, bounded stages, retry, Save and exact-revision read/image verification.

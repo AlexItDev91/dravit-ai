@@ -19,7 +19,25 @@
     "workflow": "references/authoring-workflow.md",
     "verification": "references/verification.md",
     "spatial-reasoning": "references/spatial-reasoning.md",
-    "human-use": "references/human-use.md"
+    "human-use": "references/human-use.md",
+    "protocol": "references/protocol.md",
+    "native-tools": "references/native-tools.md",
+    "availability": "references/availability.md",
+    "commands-structure": "references/commands-structure.md",
+    "commands-openings": "references/commands-openings.md",
+    "commands-roof": "references/commands-roof.md",
+    "commands-circulation": "references/commands-circulation.md",
+    "commands-interior": "references/commands-interior.md",
+    "commands-site": "references/commands-site.md",
+    "commands-pipes": "references/commands-pipes.md",
+    "commands-generic": "references/commands-generic.md",
+    "commands-workflows": "references/commands-workflows.md",
+    "structure-recipes": "references/structure-recipes.md",
+    "catalog-recipes": "references/catalog-recipes.md",
+    "examples-structure": "references/examples-structure.json",
+    "examples-catalog": "references/examples-catalog.json",
+    "examples-workflows": "references/examples-workflows.json",
+    "examples-protocol": "references/examples-protocol.json"
   },
   "revision_fields": [
     "project_id",
@@ -33,6 +51,6 @@
   "catalog_version": null,
   "catalog_fingerprint": null,
   "catalog_verification_status": "pending",
-  "source_contract_reviewed_at": "2026-10-21",
-  "review_scope": "Source contract reading only; no MCP calls, package tests or client acceptance performed for this skill."
+  "source_contract_reviewed_at": "2026-10-22",
+  "review_scope": "Complete source-backed protocol schemas, operation/action examples and focused local validation. Public release and comparative/client upgrade acceptance remain separate."
 }

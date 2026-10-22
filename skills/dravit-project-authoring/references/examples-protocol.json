@@ -1,0 +1,419 @@
+{
+  "calls": [
+    {
+      "id": "guide",
+      "name": "dravit_guide",
+      "arguments": {
+        "section": "overview"
+      },
+      "requires": "Authenticated connection; no selected project required."
+    },
+    {
+      "id": "guide-protocol",
+      "name": "dravit_guide",
+      "arguments": {
+        "section": "protocol"
+      },
+      "requires": "Use expected_version and expected_content_sha256 from the actual overview for a modeling stage; values omitted here only to demonstrate the section name."
+    },
+    {
+      "id": "projects",
+      "name": "projects_list",
+      "arguments": {
+        "page": 1
+      },
+      "requires": "Follow next_page; choose exact intended saved project."
+    },
+    {
+      "id": "session",
+      "name": "mcp_session_start",
+      "arguments": {
+        "project_id": "project.example"
+      },
+      "requires": "Replace example project ID with the chosen existing project ID; starts or joins shared work."
+    },
+    {
+      "id": "create",
+      "name": "project_create",
+      "arguments": {
+        "name": "Courtyard study",
+        "request_id": "courtyard-create-1",
+        "idempotency_key": "courtyard-create-1"
+      },
+      "requires": "Alternative to selecting an existing project. User asked for a new project; preserve same name/key on retry."
+    },
+    {
+      "id": "project",
+      "name": "project_get",
+      "arguments": {
+        "protocol_version": 1,
+        "request_id": "project-1",
+        "operation": "project.get",
+        "project_id": "project.example",
+        "arguments": {
+          "include_document": true
+        }
+      },
+      "requires": "Replace all illustrative IDs/revision/hash with current saved values. Session already joined. window_id, if present, must come from a preceding list."
+    },
+    {
+      "id": "schema",
+      "name": "tool_describe",
+      "arguments": {
+        "protocol_version": 1,
+        "request_id": "schema-1",
+        "operation": "tool.describe",
+        "project_id": "project.example",
+        "arguments": {
+          "operation": "wall.create"
+        }
+      },
+      "requires": "Replace all illustrative IDs/revision/hash with current saved values. Session already joined. window_id, if present, must come from a preceding list."
+    },
+    {
+      "id": "objects",
+      "name": "objects_list",
+      "arguments": {
+        "protocol_version": 1,
+        "request_id": "objects-1",
+        "operation": "objects.list",
+        "project_id": "project.example",
+        "arguments": {
+          "level_id": "level.0",
+          "limit": 25
+        }
+      },
+      "requires": "Replace all illustrative IDs/revision/hash with current saved values. Session already joined. window_id, if present, must come from a preceding list."
+    },
+    {
+      "id": "object",
+      "name": "object_get",
+      "arguments": {
+        "protocol_version": 1,
+        "request_id": "object-1",
+        "operation": "object.get",
+        "project_id": "project.example",
+        "arguments": {
+          "object_id": "object.wall.example"
+        }
+      },
+      "requires": "Replace all illustrative IDs/revision/hash with current saved values. Session already joined. window_id, if present, must come from a preceding list."
+    },
+    {
+      "id": "context-list",
+      "name": "editor_sessions",
+      "arguments": {
+        "protocol_version": 1,
+        "request_id": "context-list-1",
+        "operation": "editor.sessions",
+        "project_id": "project.example",
+        "arguments": {
+          "revision": {
+            "project_id": "project.example",
+            "mcp_version_id": "11111111-1111-4111-8111-111111111111",
+            "snapshot_version": 1,
+            "restore_generation": 1,
+            "document_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+          }
+        }
+      },
+      "requires": "Replace all illustrative IDs/revision/hash with current saved values. Session already joined. window_id, if present, must come from a preceding list."
+    },
+    {
+      "id": "context-window",
+      "name": "editor_sessions",
+      "arguments": {
+        "protocol_version": 1,
+        "request_id": "context-window-1",
+        "operation": "editor.sessions",
+        "project_id": "project.example",
+        "arguments": {
+          "revision": {
+            "project_id": "project.example",
+            "mcp_version_id": "11111111-1111-4111-8111-111111111111",
+            "snapshot_version": 1,
+            "restore_generation": 1,
+            "document_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+          },
+          "window_id": "22222222-2222-4222-8222-222222222222"
+        }
+      },
+      "requires": "Replace all illustrative IDs/revision/hash with current saved values. Session already joined. window_id, if present, must come from a preceding list."
+    },
+    {
+      "id": "enclosure",
+      "name": "project_batch",
+      "arguments": {
+        "protocol_version": 1,
+        "request_id": "enclosure-1",
+        "idempotency_key": "enclosure-1",
+        "operation": "project.batch",
+        "project_id": "project.example",
+        "mcp_version_id": "11111111-1111-4111-8111-111111111111",
+        "expected_snapshot_version": 1,
+        "expected_restore_generation": 1,
+        "expected_document_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "arguments": {
+          "commands": [
+            {
+              "operation": "level.create",
+              "local_id": "ground",
+              "arguments": {
+                "label": "Ground",
+                "elevation": {
+                  "value": 0,
+                  "unit": "m"
+                }
+              }
+            },
+            {
+              "operation": "wall.create",
+              "local_id": "south",
+              "arguments": {
+                "height": {
+                  "value": 2.8,
+                  "unit": "m"
+                },
+                "baseline": {
+                  "start": {
+                    "x": 0,
+                    "y": 0,
+                    "unit": "m"
+                  },
+                  "end": {
+                    "x": 8,
+                    "y": 0,
+                    "unit": "m"
+                  }
+                },
+                "level_id": {
+                  "local_id": "ground"
+                },
+                "base_offset": {
+                  "value": 0,
+                  "unit": "m"
+                },
+                "wall_type": {
+                  "kind": "material",
+                  "id": "material.concrete.c25_fixture"
+                },
+                "name": "South wall"
+              }
+            },
+            {
+              "operation": "wall.create",
+              "local_id": "east",
+              "arguments": {
+                "height": {
+                  "value": 2.8,
+                  "unit": "m"
+                },
+                "baseline": {
+                  "start": {
+                    "x": 8,
+                    "y": 0,
+                    "unit": "m"
+                  },
+                  "end": {
+                    "x": 8,
+                    "y": 6,
+                    "unit": "m"
+                  }
+                },
+                "level_id": {
+                  "local_id": "ground"
+                },
+                "base_offset": {
+                  "value": 0,
+                  "unit": "m"
+                },
+                "wall_type": {
+                  "kind": "material",
+                  "id": "material.concrete.c25_fixture"
+                },
+                "name": "East wall"
+              }
+            },
+            {
+              "operation": "wall.create",
+              "local_id": "north",
+              "arguments": {
+                "height": {
+                  "value": 2.8,
+                  "unit": "m"
+                },
+                "baseline": {
+                  "start": {
+                    "x": 8,
+                    "y": 6,
+                    "unit": "m"
+                  },
+                  "end": {
+                    "x": 0,
+                    "y": 6,
+                    "unit": "m"
+                  }
+                },
+                "level_id": {
+                  "local_id": "ground"
+                },
+                "base_offset": {
+                  "value": 0,
+                  "unit": "m"
+                },
+                "wall_type": {
+                  "kind": "material",
+                  "id": "material.concrete.c25_fixture"
+                },
+                "name": "North wall"
+              }
+            },
+            {
+              "operation": "wall.create",
+              "local_id": "west",
+              "arguments": {
+                "height": {
+                  "value": 2.8,
+                  "unit": "m"
+                },
+                "baseline": {
+                  "start": {
+                    "x": 0,
+                    "y": 6,
+                    "unit": "m"
+                  },
+                  "end": {
+                    "x": 0,
+                    "y": 0,
+                    "unit": "m"
+                  }
+                },
+                "level_id": {
+                  "local_id": "ground"
+                },
+                "base_offset": {
+                  "value": 0,
+                  "unit": "m"
+                },
+                "wall_type": {
+                  "kind": "material",
+                  "id": "material.concrete.c25_fixture"
+                },
+                "name": "West wall"
+              }
+            }
+          ]
+        }
+      },
+      "requires": "New empty study only: substitute the current complete revision; inspect/reuse existing Levels for an existing project. 8x6m is baseline rectangle, not finished inner room size. Select intended actual wall construction."
+    },
+    {
+      "id": "native-wall-update",
+      "name": "wall_update",
+      "arguments": {
+        "protocol_version": 1,
+        "request_id": "wall-height-1",
+        "idempotency_key": "wall-height-1",
+        "operation": "wall.update",
+        "project_id": "project.example",
+        "mcp_version_id": "11111111-1111-4111-8111-111111111111",
+        "expected_snapshot_version": 1,
+        "expected_restore_generation": 1,
+        "expected_document_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "arguments": {
+          "object_id": "object.wall.example",
+          "height": {
+            "value": 3,
+            "unit": "m"
+          }
+        }
+      },
+      "requires": "Alternative dedicated native mutation; substitute exact saved ID/revision from last successful stage."
+    },
+    {
+      "id": "poll",
+      "name": "operation_get",
+      "arguments": {
+        "operation_id": "operation.example"
+      },
+      "requires": "Replace with operation_id from accepted/running response; poll until terminal outcome."
+    },
+    {
+      "id": "top",
+      "name": "project_view",
+      "arguments": {
+        "revision": {
+          "project_id": "project.example",
+          "mcp_version_id": "11111111-1111-4111-8111-111111111111",
+          "snapshot_version": 1,
+          "restore_generation": 1,
+          "document_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "view": "top",
+        "level_id": "level.0",
+        "object_ids": [
+          "object.wall.example"
+        ]
+      },
+      "requires": "Replace revision and Level/object IDs from same saved state; poll resulting operation for PNG."
+    },
+    {
+      "id": "three",
+      "name": "project_view",
+      "arguments": {
+        "revision": {
+          "project_id": "project.example",
+          "mcp_version_id": "11111111-1111-4111-8111-111111111111",
+          "snapshot_version": 1,
+          "restore_generation": 1,
+          "document_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "view": "3d",
+        "level_id": "level.0",
+        "camera": {
+          "azimuth_degrees": 45,
+          "elevation_degrees": 35,
+          "projection": "isometric"
+        },
+        "filters": {
+          "underlays_visible": false
+        }
+      },
+      "requires": "Same revision/Level rule; actual active Level and lower Levels are shown. Do not infer hidden objects are absent."
+    },
+    {
+      "id": "validate",
+      "name": "project_validate",
+      "arguments": {
+        "revision": {
+          "project_id": "project.example",
+          "mcp_version_id": "11111111-1111-4111-8111-111111111111",
+          "snapshot_version": 1,
+          "restore_generation": 1,
+          "document_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "limit": 25
+      },
+      "requires": "Replace exact revision; follow report cursor. Read coverage/applicability and unknowns even when issues is empty."
+    },
+    {
+      "id": "guide-roof-operation",
+      "name": "dravit_guide",
+      "arguments": {
+        "section": "commands-roof",
+        "operation": "roof.update"
+      },
+      "requires": "Authenticated connection. Carry actual expected_version and expected_content_sha256 from overview in a modeling stage."
+    },
+    {
+      "id": "guide-one-example",
+      "name": "dravit_guide",
+      "arguments": {
+        "section": "examples-workflows",
+        "operation": "catalog.type.create",
+        "example_id": "wall-type-create"
+      },
+      "requires": "Use exact example_id from the selected collection; carry the real guide pins. This reads instructions, not a mutation."
+    }
+  ]
+}

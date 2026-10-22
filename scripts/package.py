@@ -23,6 +23,24 @@ SECTION_PATHS = {
     "verification": "references/verification.md",
     "spatial-reasoning": "references/spatial-reasoning.md",
     "human-use": "references/human-use.md",
+    "protocol": "references/protocol.md",
+    "native-tools": "references/native-tools.md",
+    "availability": "references/availability.md",
+    "commands-structure": "references/commands-structure.md",
+    "commands-openings": "references/commands-openings.md",
+    "commands-roof": "references/commands-roof.md",
+    "commands-circulation": "references/commands-circulation.md",
+    "commands-interior": "references/commands-interior.md",
+    "commands-site": "references/commands-site.md",
+    "commands-pipes": "references/commands-pipes.md",
+    "commands-generic": "references/commands-generic.md",
+    "commands-workflows": "references/commands-workflows.md",
+    "structure-recipes": "references/structure-recipes.md",
+    "catalog-recipes": "references/catalog-recipes.md",
+    "examples-structure": "references/examples-structure.json",
+    "examples-catalog": "references/examples-catalog.json",
+    "examples-workflows": "references/examples-workflows.json",
+    "examples-protocol": "references/examples-protocol.json",
 }
 SKILL_PATHS = (*SECTION_PATHS.values(), "agents/openai.yaml")
 SOURCE_PATHS = (
@@ -33,6 +51,7 @@ SOURCE_PATHS = (
     *(SKILL_PREFIX + path for path in SKILL_PATHS),
 )
 HEX_SHA256 = re.compile(r"[a-f0-9]{64}\Z")
+MAXIMUM_GUIDE_BYTES = 1048576
 SEMVER = re.compile(r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\Z")
 PUBLICATION_FIELDS = {
     "schema_version", "state", "repository", "publisher", "license",
@@ -190,13 +209,15 @@ def source_identity(source: Source, release: bool) -> dict:
 
 def guide_artifact(source: Source, identity: dict, release: bool) -> dict:
     documents = {path: source.files[SKILL_PREFIX + path] for path in SECTION_PATHS.values()}
-    return {
+    artifact = {
         "schema_version": 1, "skill_name": SKILL_NAME, "version": source.version,
         "release_status": "release" if release else "draft", "source": identity,
         "compatibility": source.compatibility, "content_sha256": file_set_hash(documents),
         "documents": [{"path": path, "sha256": digest(content), "content": content.decode("utf-8")}
                       for path, content in sorted(documents.items())],
     }
+    require(len(json_bytes(artifact)) <= MAXIMUM_GUIDE_BYTES, "Guide exceeds the server's 1 MiB instruction artifact budget; reduce duplication instead of raising the limit")
+    return artifact
 
 
 def require_release(source: Source, identity: dict, guide: dict) -> None:

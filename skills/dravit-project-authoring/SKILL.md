@@ -3,7 +3,7 @@ name: dravit-project-authoring
 description: Use when a user wants to create, change, inspect or assess a Dravit building, room, interior or site through connected Dravit MCP tools, including requests from speech, sketches, images or documents.
 compatibility: Requires an authenticated Dravit MCP connection and the server's current tool schemas. No application source, database, shell or local developer skills are required.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Dravit project authoring
@@ -12,9 +12,24 @@ Turn the user's brief into bounded changes to the saved model. Preserve its inte
 
 ## Load the relevant guidance
 
-Read [authoring workflow](references/authoring-workflow.md) before mutations and [verification](references/verification.md) before assessing a result. For layout decisions read [spatial reasoning](references/spatial-reasoning.md); for individual families and activities read [human use](references/human-use.md).
+Start with [protocol and complete requests](references/protocol.md) before the first MCP call. It explains bootstrap, envelopes, revisions, atomic batches, alias substitution, polling, failures and verification. Read [authoring workflow](references/authoring-workflow.md) for modeling stages, [verification](references/verification.md) before assessment, [spatial reasoning](references/spatial-reasoning.md) for layout and [human use](references/human-use.md) for activities.
 
-If local references are unavailable and discovery advertises `dravit_guide`, retrieve the same sections using `section` values `overview`, `workflow`, `verification`, `spatial-reasoning` and `human-use`. Keep its version, source, content digest and `release_status`; `draft` is an unreleased instruction. If its schema offers `expected_version` and `expected_content_sha256`, carry the loaded values into later section reads in that stage. A guide is instruction delivery, not proof of installed-package update. Change guide versions between completed stages, never halfway through a mutation.
+Load the matching operation reference and recipes for the task. Each command reference includes every writable field, exact unit, enum, limit and action branch; example collections include individual prerequisites. Illustrative IDs/revisions/prices must be replaced with actual saved identities and the user's intended specification.
+
+| Task | Exact parameters | Examples and behavior |
+|---|---|---|
+| Axis, Level, Wall/partition, Room/attic/finishes, Foundation, Column, Slab | [structure](references/commands-structure.md) | [construction recipes](references/structure-recipes.md), [structural examples](references/examples-structure.json) |
+| Door, Window, hosts and presets | [openings](references/commands-openings.md) | construction recipes and structural examples |
+| Roof, masses, types, custom planes, Dormer, Fronton, Roof Window | [roof](references/commands-roof.md) | construction recipes and structural examples |
+| Stair and Railing | [circulation](references/commands-circulation.md) | construction recipes and structural examples |
+| All Interior furniture, kitchen, bathroom, appliances, office, music, gym | [interior](references/commands-interior.md) | [catalog recipes](references/catalog-recipes.md), [catalog examples](references/examples-catalog.json) |
+| Terrain, Pavement, Pool, Fence/Access, vegetation, transport and exterior furniture | [site](references/commands-site.md) | catalog recipes and catalog examples |
+| Pipe WP1 route, endpoint, fitting roll, network delete | [pipes](references/commands-pipes.md) | catalog recipes and catalog examples |
+| Generic Shape/Group and ungroup | [generic](references/commands-generic.md), [workflows](references/commands-workflows.md) | catalog recipes and catalog examples |
+| Custom Wall/Foundation/Opening types, duplicate/delete/materials, display units, Save | [workflows](references/commands-workflows.md) | protocol and [workflow examples](references/examples-workflows.json) |
+| Registered calls, read/view/validation/context, unavailable operations | [native tools](references/native-tools.md), [availability](references/availability.md) | protocol and [full native-call examples](references/examples-protocol.json) |
+
+Without local files, retrieve the same documents through `dravit_guide`. Section `overview` is this entrypoint; `workflow`, `verification`, `spatial-reasoning`, `human-use` retain their names. Every other section equals the filename stem in the table, such as `protocol`, `commands-roof`, `structure-recipes` or `examples-catalog`. For `commands-*` and `examples-structure`, `examples-catalog`, `examples-workflows` pass `operation` (for example `roof.update`) to retrieve only the relevant command or examples. Add `example_id` to select one returned example. Read `examples-protocol` unfiltered; it contains complete native calls and does not support these selectors. Keep returned `version`, `content_sha256`, source and `release_status`; pass both `expected_version` and `expected_content_sha256` on later section reads within that stage. `draft` is unreleased. Instruction delivery does not prove client package installation/update. Change guide versions between completed stages, never halfway through a mutation.
 
 ## Resolve the task
 
