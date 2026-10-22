@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased: 0.3.2
+
+- Explain current Door/Window placement through the shared host-resolved read context, with an exact ratio/center example and explicit invalid-host/geometry handling. Preserve the distinction between saved projection caches and resolved placement.
+
 ## Unreleased: 0.3.1
 
 - Explain physical Wall clipping by intersecting Roofs independently of authored top intent and Roof visibility; retain exact opening and masonry quantity semantics.

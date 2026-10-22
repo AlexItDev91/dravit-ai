@@ -217,6 +217,14 @@ These are hosted openings. `door.create` and `window.create` require `host_wall_
 
 Placement ratio is measured along the ordered host baseline; side selects the host reference side. Rehost through `host_wall_id` plus current/desired ratio and side. The existing owner preserves the opening's stable child/host-opening identity while changing parent and updating host geometry. There is no separate Door/Window `level_id`, arbitrary world-center placement or `.transform`. Relevel the host through its own supported operation, or rehost to a suitable object.
 
+After a host/ratio edit, use `object_get` or `objects_list` and inspect `derived.hosted_opening_context`. `parameters` and `project_get.document` are the exact saved payload, including projection caches that can retain an earlier center. The read-only context uses the current GUI hosted-opening resolver without changing those saved facts or the revision. For example, a host from `(10,5)` to `(10,15)` and ratio `0.36` resolves to `(10,8.6)`, even if the saved center still says `(10,7.4)`:
+
+```json
+{"object_id":"object.door.example","status":"resolved","provenance":"current_gui_hosted_opening_resolver","host_wall_id":"object.wall.example","center_ratio":0.36,"center":{"unit":"m","x":10,"y":8.6},"depth":{"unit":"m","value":0.125},"rotation_degrees":90,"validation_status":"valid_for_modeling","validation_messages":[]}
+```
+
+This is the context value inside `derived`, not a writable command. Use its center/depth/rotation only with `status: resolved`. `invalid_host` gives null placement. With an existing host, `invalid_geometry` can supply current candidate coordinates, but the candidate failed the resolver checks; inspect its messages and host before deciding a repair. Do not treat that candidate as accepted placement. Missing context is unknown. `validation_status` is this resolver's result, not a whole-project collision, clearance or usability assessment. Reread after moving the host as well as after editing the opening.
+
 Built-in Door presets: `opening_preset.door.interior_900x2100`, `.interior_800x2100`, `.entry_1000x2100`, `.garage_2500x2125`, `.unfilled` (each suffix retains the full `opening_preset.door` prefix). Built-in Window presets have full prefix `opening_preset.window.` and these suffixes: `two_column_1500x1400`, `single_900x1500`, `single_1200x1500`, `double_1200x1200`, `two_column_1800x1200`, `triple_1800x1400`, `three_column_2400x1500`, `landscape_1500x900`, `single_600x1200`, `full_height_single_900x2100`, `full_height_two_column_1800x2400`, `full_height_three_column_2400x2400`, `unfilled`. The JSON collection has a separate complete creation entry for every built-in preset.
 
 Project-local presets are available from the saved project's `editor.opening_presets`. Read their exact IDs, kinds and dimensions. Unknown or cross-kind IDs reject; do not synthesize preset IDs from measurements.

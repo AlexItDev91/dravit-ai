@@ -206,7 +206,7 @@ Start or join the one shared MCP work version of a project. Call this before rea
 
 Operation: `object.get`.
 
-Read one saved object by stable object_id with actual bindings and parameters. For a Roof without parameters.masses, use exact existing mass and boundary IDs from derived.roof_authoring_context.masses. This read-only GUI authoring context does not change saved parameters, document or revision; null means unavailable. For a profiled Water Heater, derived.pipe_authoring_context provides the verified catalog, exact cold_in port position/direction/frame, occupied state and terminal_center used by pipe.route.create. Pipe network parameters expose saved graph IDs and parent_id is the PlumbingSystem. Missing spatial facts are explicitly unknown.
+Read one saved object by stable object_id. Parameters preserve the saved payload. For a Door or Window, use derived.hosted_opening_context for current host-resolved center, depth and rotation; saved parameter geometry can be stale after host or ratio edits. Use status=resolved for accepted placement. invalid_host has null placement; invalid_geometry reports a current candidate that failed the resolver checks. For a Roof without parameters.masses, use exact existing mass and boundary IDs from derived.roof_authoring_context.masses. Derived contexts do not change saved parameters, document or revision. For a profiled Water Heater, derived.pipe_authoring_context provides the verified catalog, exact cold_in port position/direction/frame, occupied state and terminal_center used by pipe.route.create. Pipe network parameters expose saved graph IDs and parent_id is the PlumbingSystem. Missing spatial facts are explicitly unknown.
 
 ```json
 {"type":"object","additionalProperties":false,"required":["protocol_version","request_id","operation","project_id","arguments"],"properties":{"protocol_version":{"type":"integer","enum":[1]},"request_id":{"type":"string","minLength":1,"maxLength":128},"operation":{"type":"string","enum":["object.get"]},"project_id":{"type":"string","minLength":1,"maxLength":255},"arguments":{"type":"object","additionalProperties":false,"required":["object_id"],"properties":{"object_id":{"type":"string","minLength":1,"maxLength":255},"kind":{"type":"string","minLength":1,"maxLength":255}}}}}
@@ -216,7 +216,7 @@ Read one saved object by stable object_id with actual bindings and parameters. F
 
 Operation: `objects.list`.
 
-Read saved objects, levels, axes and pipe networks in stable ID order. Filter by kind, parent_id or level_id; follow next_cursor only with the same filters and revision.
+Read saved objects, levels, axes and pipe networks in stable ID order. Filter by kind, parent_id or level_id; follow next_cursor only with the same filters and revision. Parameters preserve the saved payload. For Door/Window placement use derived.hosted_opening_context, resolved from the current host on this page. Use status=resolved for accepted placement. invalid_host has null placement; invalid_geometry reports a current candidate that failed resolver checks. Derived context does not alter the saved document or revision.
 
 ```json
 {"type":"object","additionalProperties":false,"required":["protocol_version","request_id","operation","project_id","arguments"],"properties":{"protocol_version":{"type":"integer","enum":[1]},"request_id":{"type":"string","minLength":1,"maxLength":128},"operation":{"type":"string","enum":["objects.list"]},"project_id":{"type":"string","minLength":1,"maxLength":255},"arguments":{"type":"object","additionalProperties":false,"properties":{"limit":{"type":"integer","minimum":1,"maximum":100,"default":25},"cursor":{"type":"string","minLength":1,"maxLength":4096},"kind":{"type":"string","minLength":1,"maxLength":255},"parent_id":{"type":"string","minLength":1,"maxLength":255},"level_id":{"type":"string","minLength":1,"maxLength":255}}}}}
@@ -256,7 +256,7 @@ Create a new standard project in the connected paid account and atomically start
 
 Operation: `project.get`.
 
-Read the complete saved project and revision. Set include_document=false for a bounded summary; use objects_list for large models.
+Read the complete saved project and revision. Set include_document=false for a bounded summary; use objects_list for large models. The document is the exact saved snapshot and may contain stale hosted-opening projection caches. Read current Door/Window placement from object_get or objects_list at derived.hosted_opening_context.
 
 ```json
 {"type":"object","additionalProperties":false,"required":["protocol_version","request_id","operation","project_id","arguments"],"properties":{"protocol_version":{"type":"integer","enum":[1]},"request_id":{"type":"string","minLength":1,"maxLength":128},"operation":{"type":"string","enum":["project.get"]},"project_id":{"type":"string","minLength":1,"maxLength":255},"arguments":{"type":"object","additionalProperties":false,"properties":{"include_document":{"type":"boolean","default":true}}}}}

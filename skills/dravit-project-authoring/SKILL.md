@@ -3,7 +3,7 @@ name: dravit-project-authoring
 description: Use when a user wants to create, change, inspect or assess a Dravit building, room, interior or site through connected Dravit MCP tools, including requests from speech, sketches, images or documents.
 compatibility: Requires an authenticated Dravit MCP connection and current tool schemas. Visual checks also require an agent-controlled browser with screenshots. No application source, database, shell or local developer skills are required.
 metadata:
-  version: "0.3.1"
+  version: "0.3.2"
 ---
 
 # Dravit project authoring
@@ -47,5 +47,7 @@ For Bathroom placement, read the Wall-support recipe in `catalog-recipes`: the c
 Work in explicit schema units, normally metres and degrees. Save uses the shared current MCP document and Reverb; there is no automatic backup or main merge. Do not bypass an unsupported operation through REST, shell, browser actions or whole-document replacement.
 
 After a completed Save reread changed objects and affected neighbours. `project_view` synchronously returns a read-only `viewport_url`, not a server image or queued operation. Open it in an available client browser with screenshots; after later Saves reload that same tab, wait for `html[data-mcp-viewport-state="ready"]`, and compare the full revision in `#mcp-viewport-status`'s `data-receipt` with the Save receipt before inspecting a screenshot. Use applicable Top/3D/Side views at the target Level and only advertised program checks. Read [verification](references/verification.md) for the exact lifecycle and client limits. Separate saved facts, program results and visual judgments. Repair confirmed issues through ordinary commands, then reassess affected routes and the original brief.
+
+For Door/Window positions, read `derived.hosted_opening_context` from `object_get` or `objects_list`. The saved `parameters` and `project_get.document` stay exact and can contain older projection coordinates. Use placement only when the context has `status: resolved`; see the hosted-opening readback example in construction recipes.
 
 Report what changed, which requirements have evidence, remaining defects, unknown/unsupported checks and the next material decision. Do not claim full usability, engineering compliance, live editor delivery or client activation from a clean image or successful JSON alone.
