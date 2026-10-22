@@ -292,6 +292,10 @@ Use these exact inner `face` objects for `face_pitch`, `dormer_create` or `roof_
 
 These selectors identify semantic intent, not rendering mesh/triangle IDs. The face must actually resolve and be editable for the selected action. A horizontal plane or a face with insufficient free area is not automatically a valid Dormer/roof-window host. The JSON includes every selector shape for each of those three actions, with host preconditions.
 
+### Choose windows for an attic
+
+In the Dravit attic workflow, place windows in a Roof slope, a Dormer or a gable. Use `roof_window_create` for the slope, the Window settings of an existing Dormer, or `fronton_settings` for a Roof-generated gable. A real ordinary gable Wall can instead host `window.create`; check its surviving face and opening fit. Do not place ordinary Windows in the eave-side Walls just because the Level is named Attic. Identify the actual Roof, Wall orientation and physical cap, then inspect Top and a matching Side/3D view. The current validator does not provide a dedicated attic-window placement check, so a clean report does not confirm this rule. This is modeling guidance and does not add a Save restriction.
+
 ### Dormers
 
 `dormer_create` takes an exact mass/face and optional `type: gable | triangular`. It invokes the existing default host-slot search. Read the saved new Dormer ID and accepted anchor/dimensions. A rejected search is not permission to create custom geometry.

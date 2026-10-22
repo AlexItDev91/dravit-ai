@@ -4,6 +4,7 @@
 
 - Explain physical Wall clipping by intersecting Roofs independently of authored top intent and Roof visibility; retain exact opening and masonry quantity semantics.
 - Refresh Wall schema descriptions and distinguish viewport errors from a ready screenshot.
+- Explain attic window host choices and the absence of a dedicated automated placement check.
 
 ## Unreleased: 0.3.0
 
