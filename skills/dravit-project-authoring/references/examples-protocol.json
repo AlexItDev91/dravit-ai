@@ -355,7 +355,7 @@
           "object.wall.example"
         ]
       },
-      "requires": "Replace revision and Level/object IDs from same saved state; poll resulting operation for PNG."
+      "requires": "Replace revision and Level/object IDs from the same saved state. This synchronous call returns viewport_url with operation_id null. Open it in a browser with screenshots, wait for html[data-mcp-viewport-state=ready], verify #mcp-viewport-status data-receipt and inspect a screenshot. After completed Saves reload the same tab; no image operation is polled."
     },
     {
       "id": "three",

@@ -52,5 +52,6 @@
   "catalog_fingerprint": null,
   "catalog_verification_status": "pending",
   "source_contract_reviewed_at": "2026-10-22",
-  "review_scope": "Complete source-backed protocol schemas, operation/action examples and focused local validation. Public release and comparative/client upgrade acceptance remain separate."
+  "review_scope": "Complete source-backed protocol schemas, operation/action examples and focused local validation. Public release and comparative/client upgrade acceptance remain separate.",
+  "visual_checks_policy": "Require an available agent-controlled browser with screenshots. project_view returns a synchronous exact-target read-only client viewport URL; after a completed Save reload the same tab and verify readiness, loaded revision receipt and screenshot. MCP access alone does not establish browser capability; no backend PNG fallback."
 }

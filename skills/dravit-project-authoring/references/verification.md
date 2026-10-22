@@ -6,19 +6,23 @@ Keep the complete identity tuple together: `project_id`, `mcp_version_id`, `snap
 
 First read the changed object and affected hosts/neighbours. Confirm stable IDs, saved dimensions, Level/offset, host relationships, bindings, count and relevant catalog identity. For a claimed physical room expansion, inspect the changed physical boundaries and dependent objects, not only its Room polygon or label. A hidden duplicate can occupy exactly the same pixels.
 
-## Images
+## Client browser viewport
 
 Request `project_view` using the complete saved `revision`, a specific `view` and exact saved `level_id` from `document.editor.levels`. Use the target Room's Level for Room tasks. Never substitute the first, zero, null, invented or all Levels.
 
 Top uses that Level's working plane; 3D includes it and lower Levels. Use `object_ids`/supported crop to inspect a region while keeping that context. For an axis edit affecting multiple Levels, inspect each affected Level. Filters and camera use only published values and do not change saved navigation.
 
-Poll `operation_get` until its PNG receipt is terminal. Confirm revision/options, `visible_object_ids`, omissions and separate `reference_sources` as actually returned by the tool. Read exact field names from discovery/receipt rather than assuming them from prose. Images must be consumed as images by the assistant; an editor hyperlink alone is not visual inspection.
+The tool synchronously returns `status: succeeded`, `operation_id: null` and `result: {viewport_url, render_location: "client", ticket_expires_at, workflow}`. It does not create a PNG, background image operation or polling target. Open `viewport_url` promptly in an agent-controlled browser that can take screenshots. Its fragment contains a single-use ticket valid for 60 seconds; exchange establishes a read-only HttpOnly cookie session for two hours for this exact project/MCP-version pair. No separate Dravit login is needed. Do not share the capability URL or substitute a public/main view. If the ticket expires before opening or the session ends, request a fresh `project_view` for the current saved revision.
 
-When the user asks to see a view, use the client's supported image display or attachment mechanism. A model-readable MCP PNG does not establish that it appeared in the user's message. If inline display is unavailable or unconfirmed, report that the render was generated, state that display limit and provide the MCP editor link with the requested view. Say an image is shown only with actual client display evidence; do not draw a substitute or publish the private PNG to work around that limit.
+Wait for `html[data-mcp-viewport-state="ready"]`, then parse the JSON `data-receipt` on `#mcp-viewport-status`. Verify all five revision fields, the requested `view` and `level_id`, `visible_object_ids`, `omitted_object_ids` and separate `reference_sources`. The loaded revision must match the completed Save receipt before its screenshot can verify that Save. After each later completed Save, reload **the same tab**, wait for readiness again, reread its receipt and inspect a new actual screenshot. This viewport has no WebSocket, Reverb, background polling or automatic refresh. Never use a prior ready state or screenshot as evidence for a newer Save. A deleted Level/object or closed MCP version is an explicit error, not permission to switch silently to another Level, a fresh version or main. For a new view/Level request another `project_view` and navigate the existing tab to its returned URL; view settings do not change the model.
+
+If this ChatGPT or Claude environment has no browser with screenshots, visual verification is unavailable even when MCP reads and writes work. Record that limit and continue independent supported work; there is no backend PNG fallback. A URL or DOM receipt alone is not visual inspection. Do not draw a substitute image or publish the private model to work around a client limitation.
+
+When the user asks to see a view, use the client's supported screenshot display or attachment mechanism. An assistant-inspected screenshot does not establish that it appeared in the user's message. If inline display is unavailable or unconfirmed, state that limit and provide the MCP editor link with the requested view. Say an image is shown only with actual client display evidence.
 
 Use Top plus 3D where supported, then relevant Front/Back/Left/Right views for the question. Side coverage is family-specific: architecture/Axis/Level are available; Pipe supports Front; catalog Side and Room Side/3D are unsupported in this source contract. Roof nested geometry is observed through its parent. Exclusive unsupported focus may fail, while a mixed selection may omit objects. Omitted IDs, clipped objects, hidden filters, copied underlays and unsupported IFC preview delivery do not prove absence from the model.
 
-The live editor monitor and its current applied revision are separate evidence. A successful server Save or image does not prove that a user's open editor received Reverb. Report live delivery as verified only when actual monitor/session evidence establishes it.
+The full editable editor and its current applied revision are separate evidence. A successful Save or reloaded read-only viewport does not prove that a user's open editor received Reverb. Report live editor delivery as verified only when actual monitor/session evidence establishes it.
 
 ## Program checks and unknowns
 

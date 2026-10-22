@@ -2,21 +2,17 @@
 
 Agent skill for creating, changing and inspecting Dravit projects through existing MCP tools: project identity, shared work versions, modelling stages, saved Levels, units, retries, visual checks and human-use reasoning.
 
-**Public preview: candidate version `0.2.2`, not yet a tagged or behaviorally evaluated release.**
+**Public preview: candidate version `0.3.0`, not yet a tagged or behaviorally evaluated release.**
 
 ## Install with one command
 
-Requires a supported local agent such as Codex or Claude Code, Node.js 22.20+ and an authenticated Dravit MCP connection.
+Local instruction installation requires a supported agent, Node.js 22.20+ and an authenticated Dravit MCP connection.
 
 ```sh
 npx skills add AlexItDev91/dravit-ai --skill dravit-project-authoring
 ```
 
-Choose the agent when prompted. Installation is project-scoped by default; add `-g` for use across projects. A direct global Codex installation is:
-
-```sh
-npx skills add AlexItDev91/dravit-ai --skill dravit-project-authoring -a codex -g
-```
+Choose the agent when prompted. Installation is project-scoped by default; add `-g` for use across projects.
 
 Connect your Dravit account separately using your agent's remote MCP/OAuth setup and `https://dravit.pro/mcp`. Installing the instructions does not authorize project access.
 
@@ -33,7 +29,7 @@ See the [skills CLI documentation](https://github.com/vercel-labs/skills/blob/ma
 
 ## Canonical source
 
-The single editable methodology is [skills/dravit-project-authoring/SKILL.md](skills/dravit-project-authoring/SKILL.md) and its 22 reference documents/collections. OpenAI metadata, Claude ZIP and MCP-guide artifacts derive from those same files. Runtime use needs only the connected Dravit MCP and instructions, never BIM source, a database, shell access or developer skills.
+The single editable methodology is [skills/dravit-project-authoring/SKILL.md](skills/dravit-project-authoring/SKILL.md) and its 22 reference documents/collections. OpenAI metadata, Claude ZIP and MCP-guide artifacts derive from those same files. Modeling needs the connected Dravit MCP and instructions, never BIM source, a database, shell access or developer skills. Visual checks additionally require an agent-controlled browser with screenshots in the selected ChatGPT or Claude environment; MCP access does not establish that capability. `project_view` returns a read-only client viewport URL synchronously. After each completed Save reload the same tab, verify its loaded revision receipt and inspect a screenshot; no server PNG fallback is available.
 
 ## Protocol handbook
 
@@ -46,7 +42,7 @@ Cloud clients retrieve the same content through `dravit_guide`: start with `over
 - [Publication configuration](packaging/publication.json) identifies the actual public repository and publisher. Public license selection and the registered ChatGPT MCP ID remain pending.
 - [Compatibility](packaging/compatibility.json) names the observed protocol/core tools and exact guide sections. The current server has no independently established catalog release number; catalog version/fingerprint remain pending until the actual evaluation records them. A protocol number is not a catalog version.
 - [Evaluation status](packaging/evaluation.json) is pending. [Acceptance cases](evaluation/acceptance.json) retain all 32 E1 case identities and behavior expectations. Existing no-skill baseline is not an evaluation of this skill. No new test suite is duplicated here.
-- [Client matrix](packaging/delivery.json) separates published, installed and active versions, web/desktop/voice, new/open chat and updates. Every acceptance entry is pending. Grok remains deferred.
+- [Client matrix](packaging/delivery.json) separates published, installed and active versions, web/desktop/voice, new/open chat and updates. Every acceptance entry is pending.
 
 Source review on 2026-10-22 used Dravit's actual MCP server/tool descriptions, command/read/preview/lifecycle schemas and E8 knowledge contracts. Available catalog commands do not establish a program validator. The skill remains capability-driven as additional existing checks are adapted.
 
@@ -59,7 +55,7 @@ python3 scripts/package.py validate
 python3 scripts/package.py build --output dist
 ```
 
-The current invocation is a draft even though its candidate version is `0.2.2`. It emits a portable Agent Plugins ZIP with `plugin.json` and remote `mcp.json`, a Claude skill-folder ZIP, guide JSON, receipt and `SHA256SUMS`. If a real `chatgpt_registered_app_id` is configured, it also emits a ChatGPT wrapper using `.app.json`; that wrapper uses the existing registered connection instead of duplicating a raw remote MCP dependency. All manifest versions come from `metadata.version`.
+The current invocation is a draft even though its candidate version is `0.3.0`. It emits a portable Agent Plugins ZIP with `plugin.json` and remote `mcp.json`, a Claude skill-folder ZIP, guide JSON, receipt and `SHA256SUMS`. If a real `chatgpt_registered_app_id` is configured, it also emits a ChatGPT wrapper using `.app.json`; that wrapper uses the existing registered connection instead of duplicating a raw remote MCP dependency. All manifest versions come from `metadata.version`.
 
 Archive entries are sorted, stored without compression and use a fixed timestamp/permissions, so identical source/configuration produces identical ZIP bytes. The output directory must be new. Only the skill, its references/UI metadata, chosen license and generated client wiring enter installable archives. Package scripts, application files, user projects, evaluation traces and runtime credentials do not enter those archives. Review archive contents for credentials as part of the deferred package gate; an allowlist is not a claim that evaluation has happened.
 
@@ -93,7 +89,7 @@ Release mode refuses a dirty source, a repository rooted outside this package, m
 
 ## Guide delivery
 
-The generated `dravit-skill-vX.Y.Z-guide.json` has `schema_version`, skill/version, `release_status`, source identity, compatibility, `content_sha256` and five `{path, sha256, content}` documents. Paths are relative to the skill root. Sections are `overview`, `workflow`, `verification`, `spatial-reasoning` and `human-use` exactly as in compatibility metadata.
+The generated `dravit-skill-vX.Y.Z-guide.json` has `schema_version`, skill/version, `release_status`, source identity, compatibility, `content_sha256` and all 23 `{path, sha256, content}` documents. Paths are relative to the skill root. The exact section names and paths, including the command references and example collections, are listed in [compatibility metadata](packaging/compatibility.json).
 
 For `content_sha256`, sort document paths lexicographically, concatenate `path:sha256(UTF-8 content)` plus a newline for each, then SHA-256 the UTF-8 concatenation. `source.tree_sha256` uses the same algorithm over all explicitly allowlisted package-source files, including referenced sanitized evaluation receipts. The guide content digest therefore stays stable when only packaging metadata changes. The build receipt separately records every output file's checksum and source commit/tree.
 
@@ -110,7 +106,7 @@ These are authoring paths from official documentation reviewed on 2026-10-21, no
 | Claude shared/org skill | Use only available authorized sharing or organizational publication after personal validation | Official documentation distinguishes shared recipient updates at next use from organization updates that follow their review path; measure the selected channel |
 | MCP-guide fallback | In the actual session discover/read the same pinned methodology and execute the control task | Instruction refresh is not native package update. New/open chat, voice and actual consumption remain separate checks |
 
-For ChatGPT, do not invent a public package ID/URL or use `npx` to install into a cloud account. A local Codex marketplace or CLI install does not prove consumer ChatGPT acceptance. Claude Code does not prove Claude web/desktop. No shell is needed for end-user modeling; Claude may require its account's code-execution capability for loading custom skills according to its current product settings.
+For ChatGPT, do not invent a public package ID/URL or use `npx` to install into a cloud account. A local instruction installation does not prove consumer ChatGPT or Claude web/desktop acceptance. No shell is needed for end-user modeling; Claude may require its account's code-execution capability for loading custom skills according to its current product settings. Browser screenshots, skill loading and MCP authentication are separate capabilities; verify them in the actual client surface.
 
 For local agents, use the install/update commands above. Their project/global scope is separate from cloud ChatGPT/Claude installation channels.
 

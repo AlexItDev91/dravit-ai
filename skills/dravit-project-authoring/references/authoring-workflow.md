@@ -2,7 +2,7 @@
 
 ## Select and read
 
-For an existing project, use `projects_list` to resolve identity and `mcp_session_start(project_id)` to join its single shared current MCP version. An editor URL is a live monitor, not a PNG or proof that its viewport applied a save. Starting another chat does not create another version.
+For an existing project, use `projects_list` to resolve identity and `mcp_session_start(project_id)` to join its single shared current MCP version. The editable `editor_url` and the read-only `project_view` browser viewport are separate surfaces. Neither a URL nor an older screenshot proves that a newer Save is displayed. Starting another chat does not create another version.
 
 For a requested new project use advertised `project_create` with its exact schema, name, request ID and idempotency key. Retry that same request after transport loss. Project creation is an account action, not a batch item. Use the returned project and MCP version, rather than finding a project by name and guessing whether creation succeeded.
 
@@ -39,7 +39,7 @@ Each successful stage already uses the shared Save path. `project.save` confirms
 
 ## Await and recover
 
-`queued` and `running` mean unfinished. Poll the returned `operation_id` with `operation_get`; respect any `retry_after_seconds`. Terminal statuses are `succeeded`, `failed`, `cancelled` and `conflict`. Read `errors`, changed IDs, local ID map and revision. A queue acknowledgement is not a saved result.
+For commands, `queued` and `running` mean unfinished. Poll the returned `operation_id` with `operation_get`; respect any `retry_after_seconds`. Terminal statuses are `succeeded`, `failed`, `cancelled` and `conflict`. Read `errors`, changed IDs, local ID map and revision. A queue acknowledgement is not a saved result. `project_view` is synchronous with `operation_id: null`; do not poll it. After a completed Save manually reload the same client viewport and verify readiness, its loaded revision and screenshot as described in [verification](verification.md).
 
 After a lost response, reuse the original idempotency key and exact payload or poll its known operation. Do not send a second create with a fresh key. Do not alter expected revision or arguments under the original key. `idempotency_conflict` requires resolving the original request, not cycling keys.
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased: 0.3.0
+
+- Replace queued server PNG delivery with a synchronous read-only client browser viewport and exact loaded-revision receipts.
+- Require an available browser with screenshots for visual checks; after completed Saves reload the same tab. Document single-use access, expiry and the absence of polling, realtime updates or a backend PNG fallback.
+
 ## Unreleased: 0.2.2
 
 - Explain actual Bathroom Wall support, variant-specific mounting datums and rear orientation; add independently exercised create/transform examples for ten placements.
