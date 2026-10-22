@@ -82,6 +82,39 @@ A kitchen module is one assembly. Choose the final axes first and send only dime
 
 Create-only `preset` activates `cabinet`, `drawers`, `sink`, `hob_with_oven`, `oven`, `dishwasher`, `washing_machine` or `pantry`. Update uses axes and dimensions rather than `preset`. Cooking variants retain the existing forced hood behavior: a cooking module can resolve to `base_wall` with `wall_variant: "hood"`. Read the final saved axes rather than assuming the input is a literal unnormalized payload. An update selecting `base_only` with `wall_height`, or `full_height` with `base_depth`, is invalid even though each field is individually known.
 
+### Place the current Bathroom models against the intended support
+
+Choose the represented installation, then place its rear against the actual Wall face. The current `water_heater` is a wall-mounted vertical storage heater; `sink` is a wall-hung washbasin, not a Kitchen module; `shower_cabin` with `installation_type: "built_in"` has no rear enclosure panel and needs the intended rear Wall. Keep these models supported by a real Wall at their mounting elevation. Do not substitute proximity to a Wall baseline or center-based Room membership for that contact.
+
+For `toilet`, distinguish the default floor-standing `close_coupled` model, normally positioned near a rear Wall, from `wall_hung`, which represents a rear wall mount and concealed tank. `washing_machine` may stand freely on its floor support. The complete `shower_cabin` variant `freestanding` does not inherit the built-in shower's mandatory rear-Wall placement. These are placement instructions for the represented catalog models, not new Save admission rules.
+
+| Family / exact variant | Native default dimensions, metres | Vertical datum | Rear / front in unrotated local plan |
+| --- | --- | --- | --- |
+| `water_heater` | width 0.48, depth 0.48, body height 0.82 | `floor_offset: 1.1` places tank-body bottom at Level+1.1; connections extend below the body | rear −Y / front +Y |
+| `sink` | width 0.60, depth 0.45, ceramic height 0.165 | `installation_height: 0.85` is rim height; ceramic bottom is Level+0.685 | rear −Y / front +Y |
+| `shower_cabin`, `built_in` (default) | width 0.90, depth 0.90, height 2.10 | signed `level_offset: 0` | rear −Y / front +Y |
+| `shower_cabin`, `freestanding` | width 0.90, depth 0.90, height 2.10 | signed `level_offset: 0` | service rear −Y / curved front enclosure |
+| `toilet`, `close_coupled` (default) | length 0.65, width 0.37 | `installation_height: 0.40` is the seat datum; base=Level+installation_height−0.40 | rear −X / front +X |
+| `toilet`, `wall_hung` | length 0.65, width 0.37 | same seat datum; native geometry omits the floor pedestal | rear −X / front +X |
+| `washing_machine`, `front` (default) | width 0.60, depth 0.60, height 0.85 | `floor_offset: 0` | rear −Y / front +Y |
+| `washing_machine`, `top` | width 0.40, depth 0.60, height 0.90 | `floor_offset: 0` | service rear −Y / front +Y |
+
+Read saved dimensions before placing an existing object. Changing washing-machine `loading_type` reapplies that variant's dimensions before explicit dimension overrides. Sink installation height must accommodate its ceramic height. Use the exact family fields; `base_elevation` is derived, and these Interior schemas have no `host_wall_id`, Wall-snap command or persistent Wall-following relation.
+
+`<family>.transform` sets an absolute plan `center` and/or absolute `rotation` in degrees. It does not add a displacement or angle. At rotation 0, the rear footprint midpoint is `(0, -depth/2)` for heater/basin/shower/washer; it is `(-length/2, 0)` for a toilet. For a horizontal Wall and objects facing +Y, use rotation 0 for the first group and rotation 90 for a toilet. For a vertical Wall and objects facing +X, use rotation 270 for the first group and rotation 0 for a toilet. The footprint rear is edge0 for the first group and edge3 for a toilet.
+
+Measure from a Wall face after applying its thickness and `baseline_alignment`, not from its baseline. For a Wall baseline `(0,0)→(20,0)`, centered alignment and thickness0.25, the face toward positive Y is Y 0.125. With default dimensions, rear footprint contact therefore places a basin center at Y 0.350, built-in shower at Y 0.575, toilet at Y 0.450 with rotation 90, and washer at Y 0.425 if wall-adjacent placement is desired. A freely placed washer needs no such rear contact.
+
+The heater's rectangular footprint describes the tank body. Its native rear bracket extends another `b = min(0.022, max(0.012, depth*0.04))` metres behind that footprint. For exact bracket-to-face contact, offset its center from the face by `depth/2+b`. Default depth 0.48 gives b 0.0192 and center Y 0.3842 against the example face, preserving the intended gap behind the tank body.
+
+The general placement calculation is `C = F + a*n`, where F is a point on the chosen Wall face and n is the unit direction from that face into the fixture. Use a=depth/2 for the first group, a=length/2 for the toilet, and a=depth/2+b for exact heater bracket contact; choose rotation so the fixture's local front direction equals n. The face segment must cover the mounting span and its real elevation. Check openings and the remaining Wall body, including any Roof trim, instead of attaching to an absent part of a Wall.
+
+Current fixture placement preserves the supplied center and does not provide automatic Wall snapping. Do not tell the user or another model that these commands automatically snap or create a host relationship. Read the resulting objects and inspect Top plus the relevant elevation/3D view. Center-based Room membership is useful context, not physical support proof. A connected Water Heater retains the existing Pipe provider guards.
+
+All new placement/spatial validator findings are advisory recommendations and MCP feedback. They do not prevent Save. If Wall contact or the support geometry cannot be established, report the missing fact instead of declaring support validated. Existing schema and native authoring guards remain their existing contracts.
+
+Use the independent `*-support-*` recipes in [examples-catalog.json](examples-catalog.json). Each has its own exact Wall, Level, default dimensions and orientation prerequisites. Create examples already use the final placement; transform examples set that absolute placement on an existing matching object. These are alternatives, not one bathroom layout to submit together.
+
 ### Water Heater profiles and connected-object guards
 
 Select a `connector_profile` with both `catalog_version` and `profile_id`, obtained from the available immutable Pipe catalog. The demonstrated profile is `object_connector.water_heater.g1_2_flat.v1`; the example version is `neutral_pipe.wp1.2026-07-19.v1`. These are concrete example identities, not instructions to override the current catalog. Sending `connector_profile: null` clears an unconnected selection. Omitting the field preserves it.

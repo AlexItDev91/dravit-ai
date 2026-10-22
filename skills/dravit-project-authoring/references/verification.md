@@ -39,6 +39,8 @@ Use these evidence distinctions when writing the result; do not fabricate these 
 
 A program report may use only a subset of these states. Preserve its original result. Availability of geometry/read helpers does not establish a route, motion, ergonomic, daylight or regulatory check. An empty finding list is not proof that unsupported checks passed.
 
+Placement/spatial recommendations are advisory MCP feedback and must not be used to block Save. Preserve existing schema and native command admission contracts. A missing support/collision rule stays unknown or unsupported; this instruction does not create a new validator.
+
 ## Human-use pass through the brief
 
 Trace each required activity: confirmed entry → usable spaces → necessary transitions → functional position at the target. For a used upper floor, inspect the actual stair/alternative route, approaches, exit and slab opening. A Stair ID or two Level references do not establish reachability.

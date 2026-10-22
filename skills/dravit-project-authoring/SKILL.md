@@ -3,7 +3,7 @@ name: dravit-project-authoring
 description: Use when a user wants to create, change, inspect or assess a Dravit building, room, interior or site through connected Dravit MCP tools, including requests from speech, sketches, images or documents.
 compatibility: Requires an authenticated Dravit MCP connection and the server's current tool schemas. No application source, database, shell or local developer skills are required.
 metadata:
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 
 # Dravit project authoring
@@ -41,6 +41,8 @@ Without local files, retrieve the same documents through `dravit_guide`. Section
 ## Change and observe
 
 Use small ordered stages with `project_batch` when dependencies belong together. Update existing IDs. Reuse the original idempotency key and payload after a lost response; poll `operation_get` for the saved result before creating again. Carry the complete successful revision forward. On conflict reread and replan.
+
+For Bathroom placement, read the Wall-support recipe in `catalog-recipes`: the current washbasin, wall-mounted heater and built-in shower need actual rear support; orientation and height differ by family. Room membership does not prove mounting. New placement/spatial recommendations are feedback, never a Save gate; do not claim an unavailable check is implemented.
 
 Work in explicit schema units, normally metres and degrees. Save uses the shared current MCP document and Reverb; there is no automatic backup or main merge. Do not bypass an unsupported operation through REST, shell, browser actions or whole-document replacement.
 

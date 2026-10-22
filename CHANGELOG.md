@@ -1,6 +1,11 @@
 # Changelog
 
-## Unreleased: 0.2.1
+## Unreleased: 0.2.2
+
+- Explain actual Bathroom Wall support, variant-specific mounting datums and rear orientation; add independently exercised create/transform examples for ten placements.
+- Distinguish advisory placement feedback from Save admission and preserve unsupported/unknown checks.
+
+## Draft source: 0.2.1
 
 - Correct empty-project bootstrap: create Level 0 at zero elevation before custom naming, additional Levels and Level-dependent objects.
 - Clarify prerequisites and ordered aliases; retain normal Level rename/elevation updates after initial creation.
