@@ -159,7 +159,7 @@
               "operation": "level.create",
               "local_id": "ground",
               "arguments": {
-                "label": "Ground",
+                "label": "Level 0",
                 "elevation": {
                   "value": 0,
                   "unit": "m"
@@ -305,7 +305,7 @@
           ]
         }
       },
-      "requires": "New empty study only: substitute the current complete revision; inspect/reuse existing Levels for an existing project. 8x6m is baseline rectangle, not finished inner room size. Select intended actual wall construction."
+      "requires": "New empty study only: substitute the current complete revision; inspect/reuse existing Levels for an existing project. 8x6m is baseline rectangle, not finished inner room size. Select intended actual wall construction. The project has no authoring Levels; the first datum must be Level 0 at zero elevation. Reuse existing saved Levels instead in an occupied project."
     },
     {
       "id": "native-wall-update",

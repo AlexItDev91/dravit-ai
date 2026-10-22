@@ -50,6 +50,8 @@ Examples: `axis.create.*`, `axis.update.*`, `axis.delete` in the JSON collection
 
 `level.create` requires a nonblank label and absolute `elevation`. `level.update` changes label/elevation/lock. An elevation edit reconciles bound construction and can affect Pipe network identities, so a single Level edit can have several changed objects. A Level lock has the same GUI pointer-guard distinction as axis lock.
 
+When no authoring Levels exist, create exactly `label:"Level 0"` at `elevation:{"value":0,"unit":"m"}` first. An Upper floor example requires that datum to exist already or to have been created earlier in the same ordered batch. The initial name/elevation constraint applies only to that first create. Afterwards `level.update` can rename the datum or change its elevation through the normal reconciliation guards. For a custom initial label, an ordered batch can create Level 0, rename it using the earlier Level alias and then create dependent objects. A reference to a later alias is invalid.
+
 Do not assume that every family's `level_id` edit translates geometry identically. Foundation reassignment preserves its absolute datum when no offset is supplied. Wall height and top constraints have their own rules. Room reassignment changes logical ownership and re-evaluates boundary/attic compatibility. Supply explicit final offset and dimensions when those are the intended result.
 
 `level.delete` requires an empty deletable Level. An occupied Level is rejected instead of silently deleting its direct owners. Reassign or delete the relevant objects first and read their result before removing the datum. Discover the real Level IDs rather than assuming `level.1` exists.

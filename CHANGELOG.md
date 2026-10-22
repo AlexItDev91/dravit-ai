@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased: 0.2.1
+
+- Correct empty-project bootstrap: create Level 0 at zero elevation before custom naming, additional Levels and Level-dependent objects.
+- Clarify prerequisites and ordered aliases; retain normal Level rename/elevation updates after initial creation.
+
 ## Unreleased: 0.2.0
 
 - Complete protocol handbook, bootstrap/native-tool envelopes and a source-backed schema reference for the finite operation catalog.
