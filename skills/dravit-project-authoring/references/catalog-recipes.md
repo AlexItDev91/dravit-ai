@@ -82,6 +82,20 @@ A kitchen module is one assembly. Choose the final axes first and send only dime
 
 Create-only `preset` activates `cabinet`, `drawers`, `sink`, `hob_with_oven`, `oven`, `dishwasher`, `washing_machine` or `pantry`. Update uses axes and dimensions rather than `preset`. Cooking variants retain the existing forced hood behavior: a cooking module can resolve to `base_wall` with `wall_variant: "hood"`. Read the final saved axes rather than assuming the input is a literal unnormalized payload. An update selecting `base_only` with `wall_height`, or `full_height` with `base_depth`, is invalid even though each field is individually known.
 
+Kitchen widths are catalog choices in metres, not arbitrary run lengths. Select the final form and fill before choosing `width`:
+
+| Final form / fill | Accepted widths, m |
+| --- | --- |
+| `single`, base `cabinet`/`drawers`, or tall `pantry` | 0.3, 0.4, 0.6, 0.8 |
+| `single`, base `sink` | 0.6, 0.8 |
+| `single`, built-in `cooktop`/`cooktop_oven`/`oven`/`dishwasher`/`washing_machine`, or tall appliance housing/tower | 0.6 |
+| `double`, base `cabinet`/`drawers`/`sink`, or `full_height` with a selected tall variant | 1.0, 1.2 |
+| `corner`, base `cabinet`/`sink` only | Use `corner_leg_a` and `corner_leg_b`; each leg must be at least `base_depth`. A corner is never full-height. |
+
+Built-in base appliances stay `single`; `double` base modules admit only `cabinet`, `drawers` and `sink`. A requested 1.7 m preparation run therefore needs separate supported modules, for example 0.3 + 0.6 + 0.8 m; a 1.4 m run can use 0.6 + 0.8 m. Place their footprints edge to edge with the same depth, rear line, rotation and worktop height. Do not create a single 1.7 m module. The kitchen-module create/update examples use the same per-module requests; an ordered `project_batch` can create the whole run.
+
+Minimum active dimensions are `base_depth: 0.45`, `base_top_height: 0.65`, `wall_depth: 0.2`, `wall_height: 0.3`, `tall_depth: 0.45`, `tall_height: 1.5`, all metres. Wall depth cannot exceed base depth; `wall_bottom_offset` must be at least `base_top_height + 0.2`. Cooking requires `wall_variant: "hood"`; a non-cooking module cannot select that hood. These are existing owner constraints, not spatial recommendations.
+
 ### Place the current Bathroom models against the intended support
 
 Choose the represented installation, then place its rear against the actual Wall face. The current `water_heater` is a wall-mounted vertical storage heater; `sink` is a wall-hung washbasin, not a Kitchen module; `shower_cabin` with `installation_type: "built_in"` has no rear enclosure panel and needs the intended rear Wall. Keep these models supported by a real Wall at their mounting elevation. Do not substitute proximity to a Wall baseline or center-based Room membership for that contact.

@@ -3,7 +3,7 @@ name: dravit-project-authoring
 description: Use when a user wants to create, change, inspect or assess a Dravit building, room, interior or site through connected Dravit MCP tools, including requests from speech, sketches, images or documents.
 compatibility: Requires an authenticated Dravit MCP connection and current tool schemas. Visual checks also require an agent-controlled browser with screenshots. No application source, database, shell or local developer skills are required.
 metadata:
-  version: "0.3.3"
+  version: "0.3.4"
 ---
 
 # Dravit project authoring

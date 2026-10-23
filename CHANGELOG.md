@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased: 0.3.4
+
+- Document existing Kitchen module width choices, conditional dimensions and multi-module runs after a real code-blind client hit an undocumented limit; make the hood example explicitly select a cooktop.
+- Correct level/absolute-datum Pavement examples to preserve their actual Storey ownership and Site-zero distinction.
+
 ## Unreleased: 0.3.3
 
 - Define the physical 1 mm model step, signed decimal rounding, metric/imperial conversion and compound Level/offset datums. Distinguish lengths from angles/ratios/areas/volumes and preserve exact submitted payloads on retries.
