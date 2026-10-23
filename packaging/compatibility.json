@@ -46,7 +46,7 @@
     "restore_generation",
     "document_hash"
   ],
-  "units_policy": "Use explicit schema units; model lengths are normally metres and rotations degrees. Display length_unit does not rescale model coordinates.",
+  "units_policy": "Use explicit schema units; model lengths are normally metres and rotations degrees. Physical model lengths and coordinates use a 1 mm (0.001 m) step in every display unit. Display length_unit does not rescale model coordinates.",
   "checks_policy": "Only invoke existing checks advertised by current discovery. Research records and geometry helpers do not establish executable checks.",
   "catalog_version": null,
   "catalog_fingerprint": null,

@@ -3,7 +3,7 @@ name: dravit-project-authoring
 description: Use when a user wants to create, change, inspect or assess a Dravit building, room, interior or site through connected Dravit MCP tools, including requests from speech, sketches, images or documents.
 compatibility: Requires an authenticated Dravit MCP connection and current tool schemas. Visual checks also require an agent-controlled browser with screenshots. No application source, database, shell or local developer skills are required.
 metadata:
-  version: "0.3.2"
+  version: "0.3.3"
 ---
 
 # Dravit project authoring
@@ -44,7 +44,7 @@ Use small ordered stages with `project_batch` when dependencies belong together.
 
 For Bathroom placement, read the Wall-support recipe in `catalog-recipes`: the current washbasin, wall-mounted heater and built-in shower need actual rear support; orientation and height differ by family. Room membership does not prove mounting. New placement/spatial recommendations are feedback, never a Save gate; do not claim an unavailable check is implemented.
 
-Work in explicit schema units, normally metres and degrees. Save uses the shared current MCP document and Reverb; there is no automatic backup or main merge. Do not bypass an unsupported operation through REST, shell, browser actions or whole-document replacement.
+Work in explicit schema units, normally metres and degrees. Physical model lengths and coordinates use a 1 mm (`0.001 m`) step in every display unit; read the rounding and derived-datum rules in the protocol before submitting dimensions. Save uses the shared current MCP document and Reverb; there is no automatic backup or main merge. Do not bypass an unsupported operation through REST, shell, browser actions or whole-document replacement.
 
 After a completed Save reread changed objects and affected neighbours. `project_view` synchronously returns a read-only `viewport_url`, not a server image or queued operation. Open it in an available client browser with screenshots; after later Saves reload that same tab, wait for `html[data-mcp-viewport-state="ready"]`, and compare the full revision in `#mcp-viewport-status`'s `data-receipt` with the Save receipt before inspecting a screenshot. Use applicable Top/3D/Side views at the target Level and only advertised program checks. Read [verification](references/verification.md) for the exact lifecycle and client limits. Separate saved facts, program results and visual judgments. Repair confirmed issues through ordinary commands, then reassess affected routes and the original brief.
 

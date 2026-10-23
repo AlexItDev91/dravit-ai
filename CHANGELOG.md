@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased: 0.3.3
+
+- Define the physical 1 mm model step, signed decimal rounding, metric/imperial conversion and compound Level/offset datums. Distinguish lengths from angles/ratios/areas/volumes and preserve exact submitted payloads on retries.
+
 ## Unreleased: 0.3.2
 
 - Explain current Door/Window placement through the shared host-resolved read context, with an exact ratio/center example and explicit invalid-host/geometry handling. Preserve the distinction between saved projection caches and resolved placement.
